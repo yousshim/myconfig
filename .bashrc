@@ -32,7 +32,7 @@ if [ -d ~/.bashrc.d ]; then
 fi
 unset rc
 
-alias config='/usr/bin/git --git-dir=$HOME/.home --work-tree=$HOME'
+alias config='/usr/bin/git --git-dir=$HOME/git/home --work-tree=$HOME'
 alias wget='wget --hsts-file="$XDG_DATA_HOME/wget-hsts"'
 
 export XDG_DATA_HOME="$HOME/.local/share"
