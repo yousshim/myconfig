@@ -1,4 +1,3 @@
-
 -- Basic settings
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
