@@ -2,56 +2,7 @@ This repository hosts all my configurations. It uses gnu stow. Each package is f
 
 # Structure
 
-.
-├── AGENTS.md
-├── bash
-│   └── .bashrc
-├── git
-│   └── .config
-│       └── git
-│           └── config
-├── mise
-│   └── .config
-│       └── mise
-│           └── config.toml
-├── neovim
-│   └── .config
-│       └── nvim
-│           ├── init.lua
-│           ├── lazy-lock.json
-│           ├── lsp
-│           │   ├── tsserver.lua
-│           │   └── zls.lua
-│           ├── parser
-│           │   ├── tsx.so
-│           │   ├── typescript.so
-│           │   └── zig.so
-│           └── queries
-│               ├── ecma
-│               │   ├── folds.scm
-│               │   ├── highlights.scm
-│               │   ├── indents.scm
-│               │   ├── injections.scm
-│               │   └── locals.scm
-│               ├── typescript
-│               │   ├── folds.scm
-│               │   ├── highlights.scm
-│               │   ├── indents.scm
-│               │   ├── injections.scm
-│               │   └── locals.scm
-│               └── zig
-│                   ├── folds.scm
-│                   ├── highlights.scm
-│                   ├── indents.scm
-│                   ├── injections.scm
-│                   └── locals.scm
-├── opencode
-│   └── .config
-│       └── opencode
-│           ├── opencode.jsonc
-└── ssh
-    └── .ssh
-        └── config
+Always run `tree -a --gitignore -I .git` to see the structure of this repository before starting a search or and edit.
 
 # Instructions
 * NEVER ADD COMMENTS UNLESS ASKED TO OR ABSOLUTELY NECESSARY

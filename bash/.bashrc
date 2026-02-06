@@ -1,3 +1,7 @@
+for file in $(find -L "$HOME/.bashrc.d" -type f); do
+  source "$file"
+done
+
 shopt -s histappend
 shopt -s checkwinsize
 shopt -s globstar
@@ -12,6 +16,10 @@ if ! shopt -oq posix; then
   fi
 fi
 
+__prompt_precmd() { exit_status=$?; }
+precmd_functions+=(__prompt_precmd)
+PS1='\n\[\033[38;5;117m\]\w\[\033[0m\]\n$([[ $exit_status -eq 0 ]] && echo -e "\[\033[32m\]" || echo -e "\[\033[31m\]")λ\[\033[0m\] '
+
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -22,6 +30,7 @@ export HISTFILE="$XDG_STATE_HOME/bash/history"
 export HISTCONTROL=ignoreboth
 export HISTSIZE=1000
 export HISTFILESIZE=2000
+mkdir -p "$XDG_STATE_HOME/bash"
 
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export GOPATH="$XDG_DATA_HOME/go"
@@ -52,7 +61,5 @@ alias cc="claude"
 if [ -z "$SSH_AGENT_PID" ]; then
   eval $(ssh-agent)
 fi
+eval "$(atuin init bash --disable-up-arrow)"
 
-# Prompt with directory and lambda that changes color based on last command status
-PROMPT_COMMAND='exit_status=$?'
-PS1='\n\033[38;5;117m\w\033[0m\n$([[ $exit_status -eq 0 ]] && echo -e "\033[32m" || echo -e "\033[31m")λ\033[0m '
