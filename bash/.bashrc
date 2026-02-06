@@ -49,4 +49,10 @@ alias occ="opencode $HOME/git/myconfig"
 alias v="nvim"
 alias cc="claude"
 
-eval $(ssh-agent)
+if [ -z "$SSH_AGENT_PID" ]; then
+  eval $(ssh-agent)
+fi
+
+# Prompt with directory and lambda that changes color based on last command status
+PROMPT_COMMAND='exit_status=$?'
+PS1='\n\033[38;5;117m\w\033[0m\n$([[ $exit_status -eq 0 ]] && echo -e "\033[32m" || echo -e "\033[31m")λ\033[0m '

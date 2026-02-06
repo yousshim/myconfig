@@ -1,4 +1,5 @@
 [tools]
+atuin = "latest"
 bun = "latest"
 fd = "latest"
 fzf = "latest"
