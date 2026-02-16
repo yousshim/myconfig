@@ -1,6 +1,7 @@
 [user]
     email = yousef98ibrahim@gmail.com
     name = yousshim
+    signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIXFTauBnGIPr0m7zLsE4/t+lIgQPn5viuUnLcbNBUtz
 [column]
     ui = auto
 [branch]
@@ -26,6 +27,7 @@
     autocorrect = prompt
 [commit]
     verbose = true
+    gpgsign = true
 [rerere]
     enabled = true
     autoupdate = true
@@ -41,3 +43,7 @@
     conflictstyle = zdiff3 
 [pull]
     rebase = true
+[gpg]
+    format = ssh
+[gpg "ssh"]
+    program = /opt/1Password/op-ssh-sign
