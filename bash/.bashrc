@@ -35,6 +35,7 @@ mkdir -p "$XDG_STATE_HOME/bash"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export GOPATH="$XDG_DATA_HOME/go"
 export GRADLE_USER_HOME="$XDG_DATA_HOME/gradle"
+export MANPAGER="bat -l man"
 
 export EDITOR="nvim"
 
@@ -63,3 +64,6 @@ if [ -z "$SSH_AGENT_PID" ]; then
 fi
 eval "$(atuin init bash --disable-up-arrow)"
 
+function mann {
+    man -k . | awk '{print $1}' | fzf --height 40 --layout=reverse --preview 'man --pager="cat" {}' --preview-window=right --bind 'enter:become(man {})'
+}
