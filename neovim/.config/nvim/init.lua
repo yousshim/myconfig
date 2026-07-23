@@ -95,6 +95,10 @@ require("lazy").setup({
             ---@type fzf-lua.Config|{}
             ---@diagnostic disable: missing-fields
             opts = {},
+            config = function(_, opts)
+                require("fzf-lua").setup(opts)
+                require("fzf-lua").register_ui_select()
+            end,
             keys = {
                 { "<leader>ff", "<CMD>FzfLua files<CR>", desc = "Fuzzy find files" },
                 { "<leader>fc", function() require("fzf-lua").files({ cwd = vim.fn.stdpath("config") }) end, desc = "Fuzzy find config files" },
