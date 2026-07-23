@@ -123,7 +123,7 @@ require("lazy").setup({
 })
 
 vim.api.nvim_create_autocmd('FileType', {
-    pattern = { 'typescript', 'zig' },
+    pattern = { 'typescript', 'zig', 'c' },
     callback = function()
         vim.treesitter.start()
     end,
@@ -154,3 +154,4 @@ vim.lsp.enable("tsserver")
 vim.lsp.enable("zls")
 vim.lsp.enable("pyrefly")
 vim.lsp.enable("luals")
+vim.lsp.enable("clangd")
