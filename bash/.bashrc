@@ -49,6 +49,8 @@ prepend_path "$XDG_BIN_HOME"
 prepend_path "$XDG_DATA_HOME/mise/shims"
 export PATH
 
+eval $(dircolors)
+alias ls="ls --color=auto"
 alias gcl="git clone"
 alias gc="git commit"
 alias gs="git status -s"
