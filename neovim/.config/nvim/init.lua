@@ -127,7 +127,7 @@ require("lazy").setup({
 })
 
 vim.api.nvim_create_autocmd('FileType', {
-    pattern = { 'typescript', 'zig', 'c' },
+    pattern = { 'typescript', 'zig', 'c', 'go' },
     callback = function()
         vim.treesitter.start()
     end,
