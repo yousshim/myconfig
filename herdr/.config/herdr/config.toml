@@ -1,0 +1,107 @@
+# herdr configuration
+# Symlinked to ~/.config/herdr/config.toml via stow.
+#
+# Deliberately close to defaults. Almost everything herdr supports is left at
+# its default and NOT written here -- run `herdr --default-config` to see the
+# full set of knobs, and `herdr config check` after any edit.
+# Reload without restarting: prefix+shift+r
+
+# Onboarding prompt is a first-run thing; we've made our choices below.
+onboarding = false
+
+[theme]
+# Matches the catppuccin colorscheme in neovim/.config/nvim/init.lua.
+name = "catppuccin"
+
+# Worth trying later: follow the host terminal's light/dark mode.
+# auto_switch = true
+# dark_name = "catppuccin"
+# light_name = "catppuccin-latte"
+
+[keys]
+# ctrl+b is the tmux default, but ctrl+space stays out of readline's way
+# (ctrl+b is backward-char in bash, ctrl+a is beginning-of-line).
+prefix = "ctrl+space"
+
+# Everything else is left at herdr's defaults. The ones worth memorising first,
+# all pressed after the prefix:
+#
+#   ?              help -- the real cheat sheet, start here
+#   s              settings
+#   v  /  -        split pane vertical / horizontal
+#   h j k l        focus pane left/down/up/right  (same as neovim)
+#   x              close pane
+#   z              zoom the focused pane to fullscreen
+#   c              new tab
+#   n  /  p        next / previous tab
+#   1..9           jump to tab N
+#   w              workspace picker
+#   g              goto
+#   b              toggle the sidebar
+#   e              open this pane's scrollback in $EDITOR (nvim)
+#   q              detach (the session keeps running in the background)
+#   shift+r        reload this config
+#
+# Room to grow -- these are unbound by default, uncomment as you find you want them:
+# previous_workspace = "prefix+["   # once you keep more than one repo open
+# next_workspace = "prefix+]"
+# switch_workspace = ""             # e.g. "prefix+shift+1..9" for indexed jumps
+# last_pane = ""                    # back-and-forth between two panes; note that
+#                                   # prefix+tab is already cycle_pane_next, so pick
+#                                   # a free key or deliberately override that one.
+
+# Custom command bindings live here, e.g. a lazygit popup. Left out until you
+# actually want one:
+# [[keys.command]]
+# key = "prefix+g"
+# type = "popup"
+# command = "lazygit"
+# width = "80%"
+# height = "80%"
+
+[ui]
+# You usually work one repo at a time -- don't spend a row on a tab bar showing
+# a single tab. New tabs still work; the bar reappears when there are two.
+hide_tab_bar_when_single_tab = true
+
+# Don't interrupt tab creation to ask for a name. Rename later with prefix+shift+t.
+prompt_new_tab_name = false
+
+# You organise with your terminal's own tabs, so the sidebar starts out of the
+# way. Takes effect on the next launch; prefix+b toggles it any time, and it's
+# still the place to see agent state at a glance.
+sidebar_start_collapsed = true
+
+# "hidden" gives the sidebar zero width. "compact" (the default) instead keeps a
+# narrow status rail with agent activity marks -- switch to it if you find you
+# miss knowing an agent needs you.
+sidebar_collapsed_mode = "hidden"
+
+# Since your terminal's tabs are how you navigate, this is what herdr writes into
+# each one. Tokens: {hostname} {workspace} {tab} {pane} {terminal_title}.
+# Default is "{hostname}: {workspace}"; adding {tab} disambiguates when one
+# workspace has several tabs. Set "" to leave the title entirely alone.
+window_title = "{hostname}: {workspace}"
+
+# Pane borders, scrollbars, mouse capture and copy-on-select are left at defaults.
+
+[ui.toast]
+# Background notifications when an agent finishes or needs you. "herdr" draws an
+# in-app toast, which behaves the same on every machine; "terminal" and "system"
+# hand off to the OS and vary by desktop. Default is "off" -- this is the one
+# setting most worth having on from day one when running agents.
+delivery = "herdr"
+
+[session]
+# Default, noted because it's the reason Claude Code panes survive a server
+# restart with their conversation intact.
+resume_agents_on_restore = true
+
+[experimental]
+# Lets you run herdr from inside a herdr pane -- notably `herdr --remote hetzner`
+# without first detaching from the local session.
+allow_nested = true
+
+# Remote is left entirely at defaults. `herdr --remote hetzner` already routes
+# through your ~/.ssh/config and adds ServerAlive* keepalives on top, which
+# matters because ssh/.ssh/config doesn't set them.
